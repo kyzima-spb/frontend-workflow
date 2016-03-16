@@ -1,0 +1,44 @@
+{
+  "name": "frontend_workflow",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Kirill Vercetti"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "./dist/css/bootstrap.min.css",
+        "./dist/js/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "./css/font-awesome.min.css"
+      ]
+    }
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.5.0",
+    "jquery-ui": "^1.11.4"
+  },
+  "group": {
+    "test": [
+      "bootstrap"
+    ],
+    "admin": [
+      "font-awesome"
+    ]
+  }
+}
