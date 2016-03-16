@@ -71,6 +71,8 @@ function lazyTask(name, path, options) {
 }
 
 
+lazyTask('clean', './tasks/clean.js');
+
 lazyTask('wiredep', './tasks/wiredep.js', cnf);
 
 lazyTask('build:bower', './tasks/build_tasks/bower.js', cnf);
