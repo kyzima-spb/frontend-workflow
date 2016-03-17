@@ -31,7 +31,7 @@ function buildHtml(config) {
     return gulp.src(config.entries)
         .pipe(gulp.dest(config.dest))
         .pipe($.inject(assets, config.vendor.inject))
-        
+        .pipe($.htmlmin(config.htmlmin.options))
         .pipe(gulp.dest(config.dest))
     ;
 }
@@ -39,6 +39,11 @@ function buildHtml(config) {
 
 module.exports = function (options) {
     return function (cb) {
-        es.merge(options.map(buildHtml)).on('end', cb);
+        function handler(config) {
+            config.htmlmin = options.htmlmin;
+            return buildHtml(config);
+        }
+        
+        es.merge(options.bundles.map(handler)).on('end', cb);
     }
 };

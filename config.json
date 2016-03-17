@@ -45,5 +45,21 @@
                 "group": "test"
             }
         }
-    ]
+    ],
+    
+    "htmlmin": {
+        "options": {
+            "useShortDoctype": true,
+            "removeComments": true,
+            "removeCommentsFromCDATA": true,
+            "collapseWhitespace": true,
+            "removeEmptyAttributes": true,
+            "removeRedundantAttributes": true,
+            "collapseBooleanAttributes": true,
+            "removeScriptTypeAttributes": true,
+            "removeStyleLinkTypeAttributes": true,
+            "minifyJS": true,
+            "minifyCSS": true
+        }
+    }
 }

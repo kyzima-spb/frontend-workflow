@@ -30,6 +30,13 @@ lazyTask('wiredep', './tasks/wiredep.js', config.html);
 
 lazyTask('build:bower', './tasks/build_tasks/bower.js', config.html);
 
-lazyTask('build:html', './tasks/build_tasks/html.js', config.html);
+lazyTask(
+    'build:html',
+    './tasks/build_tasks/html.js',
+    _.merge({
+        'bundles': config.html,
+        'htmlmin': config.htmlmin
+    })
+);
 
 gulp.task('build', gulp.series(['clean', 'build:bower', 'build:html']));
