@@ -7,6 +7,13 @@
         "build": "./dist/"
     },
     
+    "browserSync": {
+        "notify": false,
+        "server": {
+            "baseDir": "@build"
+        }
+    },
+    
     "clean": {
         "patterns": [
             "**/*", "!.git*", "!.svn*"

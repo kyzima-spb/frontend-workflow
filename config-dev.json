@@ -1,4 +1,13 @@
 {
+    "browserSync": {
+        "server": {
+            "baseDir": ["@tmp", "@src"],
+            "routes": {
+                "/bower_components": "bower_components"
+            }
+        }
+    },
+    
     "clean": {
         "patterns": [
             "@tmp"
