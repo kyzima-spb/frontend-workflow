@@ -1,0 +1,49 @@
+{
+    "env": "development",
+    
+    "paths": {
+        "src": "./app/",
+        "tmp": ".tmp/",
+        "build": "./dist/"
+    },
+    
+    "clean": {
+        "patterns": [
+            "**/*", "!.git*", "!.svn*"
+        ],
+        "options": {
+            "cwd": "@build"
+        }
+    },
+    
+    "html": [
+        {
+            "entries": ["@src/index.html"],
+            "dest": "@build",
+            "vendor": {
+                "inject": {
+                    "relative": true
+                }
+            }
+        },
+        {
+            "entries": ["@src/admin/admin.html"],
+            "dest": "@build/admin",
+            "vendor": {
+                "group": "admin",
+                "outputCss": "@build/vendor/css/admin.css",
+                "outputJs": "@build/vendor/js/admin.js",
+                "inject": {
+                    "relative": true
+                }
+            }
+        },
+        {
+            "entries": ["@src/test.html"],
+            "dest": "@build",
+            "vendor": {
+                "group": "test"
+            }
+        }
+    ]
+}

@@ -5,7 +5,9 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "./node_modules/.bin/gulp"
+    "gulp": "./node_modules/.bin/gulp",
+    
+    "build": "NODE_ENV=production gulp build"
   },
   "author": "Kirill Vercetti",
   "license": "ISC",

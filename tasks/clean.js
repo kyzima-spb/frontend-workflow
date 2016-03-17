@@ -3,21 +3,8 @@
 const del = require('del');
 
 
-// gulp.task('clean:tmp', function (cb) {
-//     del(config.paths.tmp, cb);
-// });
-
-
-module.exports = function (options) {
+module.exports = function (config) {
     return function (cb) {
-        del(
-            [
-                '**/*', '!.git*', '!.svn*'
-            ],
-            {
-                cwd: options.paths.build
-            },
-            cb
-        );
+        return del(config.patterns, config.options);
     }
 };
