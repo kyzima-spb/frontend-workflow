@@ -11,8 +11,8 @@ module.exports = function (configPath) {
         return false;
     }
     
-    config.env = process.env.NODE_ENV || config.env || 'developement';
-    config.isDev = config.env === 'developement';
+    config.env = process.env.NODE_ENV || config.env || 'development';
+    config.isDev = config.env === 'development';
     
     if (config.isDev) {
         try {
