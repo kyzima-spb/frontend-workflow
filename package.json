@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "./node_modules/.bin/gulp",
-    "build": "NODE_ENV=production gulp build",
-    "serve": "NODE_ENV=production gulp serve"
+    "build": "NODE_ENV=production ./node_modules/.bin/gulp build",
+    "serve": "NODE_ENV=production ./node_modules/.bin/gulp serve"
   },
   "author": "Kirill Vercetti",
   "license": "ISC",
