@@ -14,6 +14,17 @@
         }
     },
     
+    "watch": [
+        {
+            "src": "./bower.json",
+            "tasks": ["wiredep"]
+        },
+        {
+            "src": ["@src/**/*.styl"],
+            "tasks": ["compile:css"]
+        }
+    ],
+    
     "clean": {
         "patterns": [
             "**/*", "!.git*", "!.svn*"

@@ -14,6 +14,8 @@ let config = Config(path.resolve('./config.json'));
 
 lazyTask('browserSync', './tasks/browserSync.js', config.browserSync);
 
+lazyTask('watch', './tasks/watch.js', config.watch);
+
 lazyTask('clean', './tasks/clean.js', config.clean);
 
 lazyTask('wiredep', './tasks/wiredep.js', config.html);
@@ -34,3 +36,7 @@ lazyTask(
 gulp.task('build', gulp.series(['clean', 'build:bower', 'build:html']));
 
 gulp.task('serve', gulp.series(['build', 'browserSync']));
+
+// gulp.task('watch', ['watchify', 'browserSync'], function () {
+    
+// });
