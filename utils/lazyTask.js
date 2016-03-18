@@ -4,13 +4,15 @@ const Path = require('path');
 const gulp = require('gulp');
 
 
-function lazyTask(name, path, options) {
+function lazyTask(name, path, options, tasks) {
+    function handler(cb) {
+        let task = require(Path.resolve(path)).call(this, options, true);
+        return task(cb);
+    }
+    
     options = options || {};
     
-    gulp.task(name, function (cb) {
-        let task = require(Path.resolve(path)).call(this, options);
-        return task(cb);
-    });
+    tasks ? gulp.task(name, tasks, handler) : gulp.task(name, handler);
 }
 
 

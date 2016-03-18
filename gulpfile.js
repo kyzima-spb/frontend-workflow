@@ -14,9 +14,19 @@ let config = Config(path.resolve('./config.json'));
 
 lazyTask('browserSync', './tasks/browserSync.js', config.browserSync);
 
+lazyTask(
+    'watch',
+    './tasks/watch.js',
+    config.watch,
+    gulp.parallel([/*'watchify', */'browserSync'])
+);
+
 lazyTask('clean', './tasks/clean.js', config.clean);
 
 lazyTask('wiredep', './tasks/wiredep.js', config.html);
+
+lazyTask('compile:css', './tasks/compile_tasks/css.js', config.css);
+lazyTask('compile:browserify', './tasks/compile_tasks/browserify.js', config.browserify);
 
 lazyTask('build:bower', './tasks/build_tasks/bower.js', config.html);
 
