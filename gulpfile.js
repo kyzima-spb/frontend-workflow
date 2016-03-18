@@ -18,6 +18,8 @@ lazyTask('clean', './tasks/clean.js', config.clean);
 
 lazyTask('wiredep', './tasks/wiredep.js', config.html);
 
+lazyTask('compile:css', './tasks/compile_tasks/css.js', config.css);
+
 lazyTask('build:bower', './tasks/build_tasks/bower.js', config.html);
 
 lazyTask(

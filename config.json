@@ -68,5 +68,15 @@
             "minifyJS": true,
             "minifyCSS": true
         }
-    }
+    },
+    
+    "css": [
+        {
+            "src": ["@src/**/[^_]*.styl"],
+            "dest": "@tmp",
+            "stylus": {
+                "include-css": true
+            }
+        }
+    ]
 }
