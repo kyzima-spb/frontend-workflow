@@ -89,5 +89,13 @@
                 "include-css": true
             }
         }
-    ]
+    ],
+    
+    "browserify": [{
+        "entries": "@src/js/index.js",
+        "dest": "@tmp/js",
+        "outputName": "index.js",
+        "require": [],
+        "external": []
+    }]
 }
