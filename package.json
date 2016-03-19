@@ -37,6 +37,7 @@
     "lodash": "^4.6.1",
     "main-bower-files": "^2.11.1",
     "postcss-assets-rebase": "^0.4.0",
+    "postcss-csso": "^1.0.0",
     "poststylus": "^0.2.3",
     "stream-combiner2": "^1.1.1",
     "through2": "^2.0.1",

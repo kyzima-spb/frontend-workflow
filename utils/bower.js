@@ -23,7 +23,8 @@ function buildBowerDependencies(config) {
                 assetsPath: '../assets',
                 relative: true,
                 renameDuplicates: true
-            })
+            }),
+            require('postcss-csso')()
         ];
     
     if (!assets.length) {
@@ -36,7 +37,7 @@ function buildBowerDependencies(config) {
                 to: outputCss
             }),
             $.concat(path.basename(outputCss)),
-            $.csso(),
+            // $.csso(),
             gulp.dest(path.dirname(outputCss))
         )))
         .pipe($.if('*.js', combine(
