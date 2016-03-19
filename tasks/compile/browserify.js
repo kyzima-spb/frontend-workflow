@@ -11,7 +11,7 @@ const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync');
 
 
-function browserifyTask(config, devMode) {
+function browserifyTask(options, devMode) {
     function browserifyThis(bundleConfig) {
         var b,
             bundle;
@@ -27,13 +27,10 @@ function browserifyTask(config, devMode) {
         bundle = function () {
             return b
                 .bundle()
-                .on('error', $.notify.onError(function (err) {
-                    console.log(err.message);
-                    return {
-                        title: 'Browserify',
-                        mesage: err.message
-                    }
-                }))
+                .on('error', function (err) {
+                    err.plugin = 'browserify';
+                    $.notify.onError(options.notify.error).call(this, err);
+                })
                 .pipe(source(bundleConfig.outputName))
                 .pipe(gulp.dest(bundleConfig.dest))
                 .pipe(browserSync.reload({
@@ -55,7 +52,7 @@ function browserifyTask(config, devMode) {
     }
     
     return function (cb) {
-        es.merge(config.map(browserifyThis)).on('end', cb);
+        es.merge(options.browserify.map(browserifyThis)).on('end', cb);
     }
 }
 

@@ -15,8 +15,8 @@ defineLazyTask('clean', './tasks/clean.js', Config.get('clean'));
 
 defineLazyTask('wiredep', './tasks/wiredep.js', Config.get('html'));
 
-defineLazyTask('compile:css', './tasks/compile/css.js', Config.get('css'));
-defineLazyTask('compile:browserify', './tasks/compile/browserify.js', Config.get('browserify'));
+defineLazyTask('compile:css', './tasks/compile/css.js', Config.get(['css', 'notify']));
+defineLazyTask('compile:browserify', './tasks/compile/browserify.js', Config.get(['browserify', 'notify']));
 
 defineLazyTask('build:bower', './tasks/build/bower.js', Config.get('html'));
 defineLazyTask('build:images', './tasks/build/images.js', Config.get(['images', 'notify'])); 
