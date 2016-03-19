@@ -4,7 +4,8 @@ const path = require('path');
 const _ = require('lodash');
 
 const Config = require('./utils/config.js');
-const lazyTask = require('./utils/lazyTask.js');
+const lazyTask = require('./utils/lazyTask.js').lazyTask;
+const defineLazyTask = require('./utils/lazyTask.js').defineLazyTask;
 
 const gulp = require('gulp');
 // const through2 = require('through2').obj;
@@ -12,27 +13,26 @@ const gulp = require('gulp');
 let config = Config(path.resolve('./config.json'));
 
 
-lazyTask('browserSync', './tasks/browserSync.js', config.browserSync);
+defineLazyTask('browserSync', './tasks/browserSync.js', config.browserSync);
 
-lazyTask(
-    'watch',
-    './tasks/watch.js',
-    config.watch,
-    gulp.parallel([/*'watchify', */'browserSync'])
-);
+defineLazyTask('clean', './tasks/clean.js', config.clean);
 
-lazyTask('clean', './tasks/clean.js', config.clean);
+defineLazyTask('wiredep', './tasks/wiredep.js', config.html);
 
-lazyTask('wiredep', './tasks/wiredep.js', config.html);
+defineLazyTask('compile:css', './tasks/compile/css.js', config.css);
+defineLazyTask('compile:browserify', './tasks/compile/browserify.js', config.browserify);
 
-lazyTask('compile:css', './tasks/compile_tasks/css.js', config.css);
-lazyTask('compile:browserify', './tasks/compile_tasks/browserify.js', config.browserify);
+gulp.task('watch', gulp.parallel([
+    lazyTask('./tasks/watch.js', config.watch),
+    'compile:browserify',
+    'browserSync'
+]));
 
-lazyTask('build:bower', './tasks/build_tasks/bower.js', config.html);
+defineLazyTask('build:bower', './tasks/build/bower.js', config.html);
 
-lazyTask(
+defineLazyTask(
     'build:html',
-    './tasks/build_tasks/html.js',
+    './tasks/build/html.js',
     _.merge({
         'bundles': config.html,
         'htmlmin': config.htmlmin

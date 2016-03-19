@@ -31,6 +31,7 @@ function browserifyTask(config, devMode) {
             return b
                 .bundle()
                 .on('error', $.notify.onError(function (err) {
+                    console.log(err.message);
                     return {
                         title: 'Browserify',
                         mesage: err.message
