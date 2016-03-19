@@ -11,6 +11,7 @@ function lazyTask(path, options) {
     
     return function (cb) {
         let task = require(Path.resolve(path)).call(this, options, Config.isDev());
+        // let task = require(path).call(this, options, Config.isDev());
         return task(cb);
     };
 }
