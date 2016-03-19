@@ -4,7 +4,23 @@ const path = require('path');
 const _ = require('lodash');
 
 
-module.exports = function (configPath) {
+let params = {};
+
+
+function get(name, def) {
+    let res = _.isArray(name) ? _.pick(params, name) : params[name];
+    return !_.isEmpty(res) ? res : def;
+}
+
+
+function isDev() {
+    return get('env', 'development') === 'development';
+}
+
+
+function load(configPath) {
+    configPath = configPath || path.join(process.cwd(), 'config.json');
+    
     try {
         var config = require(configPath);
     } catch (e) {
@@ -39,5 +55,12 @@ module.exports = function (configPath) {
         str = str.replace(expr, paths[path]);
     }
     
-    return JSON.parse(str.replace(/\/+/g, '/'));
+    return params = JSON.parse(str.replace(/\/+/g, '/'));
+}
+
+
+module.exports = {
+    get: get,
+    isDev: isDev,
+    load: load
 };

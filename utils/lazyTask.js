@@ -3,12 +3,14 @@
 const Path = require('path');
 const gulp = require('gulp');
 
+const Config = require('./config.js');
+
 
 function lazyTask(path, options) {
     options = options || {};
     
     return function (cb) {
-        let task = require(Path.resolve(path)).call(this, options, true);
+        let task = require(Path.resolve(path)).call(this, options, Config.isDev());
         return task(cb);
     };
 }
