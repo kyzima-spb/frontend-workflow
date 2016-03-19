@@ -11,9 +11,6 @@ const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync');
 
 
-//     mergeStream = require('merge-stream'),
-
-
 function browserifyTask(config, devMode) {
     function browserifyThis(bundleConfig) {
         var b,
@@ -60,15 +57,7 @@ function browserifyTask(config, devMode) {
     return function (cb) {
         es.merge(config.map(browserifyThis)).on('end', cb);
     }
-
-
-//     return mergeStream.apply(gulp, _.map(config, browserifyThis));
 }
-
-
-// gulp.task('browserify', function () {
-//     return browserifyTask(false);
-// });
 
 
 module.exports = browserifyTask;
