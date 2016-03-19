@@ -5,7 +5,9 @@ const es = require('event-stream');
 
 const browserify = require('browserify');
 const watchify = require('watchify');
+const babelify = require('babelify');
 const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync');
@@ -23,6 +25,7 @@ function browserifyTask(options, devMode) {
         }
 
         b = browserify(bundleConfig);
+        b.transform(babelify);
 
         bundle = function () {
             return b
@@ -32,6 +35,8 @@ function browserifyTask(options, devMode) {
                     $.notify.onError(options.notify.error).call(this, err);
                 })
                 .pipe(source(bundleConfig.outputName))
+                .pipe(buffer()) // convert from streaming to buffered vinyl file object
+                .pipe($.if(!devMode, $.uglify()))
                 .pipe(gulp.dest(bundleConfig.dest))
                 .pipe(browserSync.reload({
                     stream: true
