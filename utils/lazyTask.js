@@ -15,6 +15,9 @@ function lazyTask(path, options) {
 
 
 function defineLazyTask(name, path, options) {
+    options = options || {};
+    options.taskName = name;
+    
     // path = Path.join(process.cwd(), 'tasks', name.split(':').join(Path.sep)) + '.js';
     gulp.task(name, lazyTask(path, options));
 }

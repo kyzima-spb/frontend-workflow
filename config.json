@@ -97,5 +97,11 @@
         "outputName": "index.js",
         "require": [],
         "external": []
-    }]
+    }],
+    
+    "fonts": {
+        "src": "@src/fonts/**/*",
+        "dest": "@build/fonts",
+        "ext": "{eot,svg,ttf,woff,woff2}"
+    }
 }

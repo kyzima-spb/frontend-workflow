@@ -29,6 +29,7 @@ gulp.task('watch', gulp.parallel([
 ]));
 
 defineLazyTask('build:bower', './tasks/build/bower.js', config.html);
+defineLazyTask('build:fonts', './tasks/build/fonts.js', config.fonts);
 
 defineLazyTask(
     'build:html',
@@ -42,3 +43,8 @@ defineLazyTask(
 gulp.task('build', gulp.series(['clean', 'build:bower', 'build:html']));
 
 gulp.task('serve', gulp.series(['build', 'browserSync']));
+
+gulp.task('default', gulp.series([
+    gulp.parallel(['compile:css', 'compile:browserify']),
+    'watch'
+]));
