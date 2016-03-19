@@ -22,30 +22,27 @@ defineLazyTask('wiredep', './tasks/wiredep.js', config.html);
 defineLazyTask('compile:css', './tasks/compile/css.js', config.css);
 defineLazyTask('compile:browserify', './tasks/compile/browserify.js', config.browserify);
 
+defineLazyTask('build:bower', './tasks/build/bower.js', config.html);
+defineLazyTask('build:images', './tasks/build/images.js', _.pick(config, ['images', 'notify'])); 
+defineLazyTask('build:fonts', './tasks/build/fonts.js', config.fonts);
+defineLazyTask('build:html', './tasks/build/html.js', _.pick(config, ['html', 'htmlmin']));
+
+gulp.task('compile', gulp.parallel([
+    'compile:css', 'compile:browserify'
+]));
+
+gulp.task('build', gulp.series([
+    'clean',
+    gulp.parallel(['build:images', 'build:fonts', 'build:bower']),
+    'build:html'
+]));
+
 gulp.task('watch', gulp.parallel([
     lazyTask('./tasks/watch.js', config.watch),
     'compile:browserify',
     'browserSync'
 ]));
 
-defineLazyTask('build:bower', './tasks/build/bower.js', config.html);
-defineLazyTask('build:images', './tasks/build/images.js', _.pick(config, ['images', 'notify'])); 
-defineLazyTask('build:fonts', './tasks/build/fonts.js', config.fonts);
-
-defineLazyTask(
-    'build:html',
-    './tasks/build/html.js',
-    _.merge({
-        'bundles': config.html,
-        'htmlmin': config.htmlmin
-    })
-);
-
-gulp.task('build', gulp.series(['clean', 'build:bower', 'build:html']));
-
 gulp.task('serve', gulp.series(['build', 'browserSync']));
 
-gulp.task('default', gulp.series([
-    gulp.parallel(['compile:css', 'compile:browserify']),
-    'watch'
-]));
+gulp.task('default', gulp.series(['compile', 'watch']));

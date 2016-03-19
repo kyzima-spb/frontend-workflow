@@ -44,6 +44,6 @@ module.exports = function (options) {
             return buildHtml(config);
         }
         
-        es.merge(options.bundles.map(handler)).on('end', cb);
+        es.merge(options.html.map(handler)).on('end', cb);
     }
 };
