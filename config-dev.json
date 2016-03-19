@@ -15,5 +15,20 @@
         "options": {
             "cwd": "."
         }
-    }
+    },
+    
+    "css": [
+        {
+            "dest": "@tmp",
+            "stylus": {
+                "include-css": false
+            }
+        }
+    ],
+    
+    "browserify": [
+        {
+            "dest": "@tmp/js"
+        }
+    ]
 }

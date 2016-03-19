@@ -12,6 +12,7 @@ const gulp = require('gulp');
 
 let config = Config(path.resolve('./config.json'));
 
+console.log(config);
 
 defineLazyTask('browserSync', './tasks/browserSync.js', config.browserSync);
 
@@ -33,7 +34,7 @@ gulp.task('compile', gulp.parallel([
 
 gulp.task('build', gulp.series([
     'clean',
-    gulp.parallel(['build:images', 'build:fonts', 'build:bower']),
+    gulp.parallel(['compile', 'build:images', 'build:fonts', 'build:bower']),
     'build:html'
 ]));
 

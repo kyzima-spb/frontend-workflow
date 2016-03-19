@@ -91,20 +91,22 @@
     "css": [
         {
             "src": ["@src/**/[^_]*.styl"],
-            "dest": "@tmp",
+            "dest": "@build",
             "stylus": {
                 "include-css": true
             }
         }
     ],
     
-    "browserify": [{
-        "entries": "@src/js/index.js",
-        "dest": "@tmp/js",
-        "outputName": "index.js",
-        "require": [],
-        "external": []
-    }],
+    "browserify": [
+        {
+            "entries": "@src/js/index.js",
+            "dest": "@build/js",
+            "outputName": "index.js",
+            "require": [],
+            "external": []
+        }
+    ],
     
     "images": {
         "src": "@src/img/**/*",
