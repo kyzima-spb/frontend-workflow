@@ -14,9 +14,6 @@ function watch(config) {
 
 module.exports = function (config) {
     return function (cb) {
-        // es.merge(config.map(watch)).on('end', cb);
-        
         config.map(watch);
-        cb();
     };
 };
