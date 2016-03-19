@@ -7,6 +7,13 @@
         "build": "./dist/"
     },
     
+    "notify": {
+        "error": {
+            "title": "<%= error.name %>: <%= error.plugin %>",
+            "message": "<%= error.message %>"
+        }
+    },
+    
     "browserSync": {
         "notify": false,
         "server": {
@@ -98,6 +105,15 @@
         "require": [],
         "external": []
     }],
+    
+    "images": {
+        "src": "@src/img/**/*",
+        "dest": "@build/img",
+        "imagemin": {
+            "progressive": true,
+            "interlaced": true
+        }
+    },
     
     "fonts": {
         "src": "@src/fonts/**/*",

@@ -29,6 +29,7 @@ gulp.task('watch', gulp.parallel([
 ]));
 
 defineLazyTask('build:bower', './tasks/build/bower.js', config.html);
+defineLazyTask('build:images', './tasks/build/images.js', _.pick(config, ['images', 'notify'])); 
 defineLazyTask('build:fonts', './tasks/build/fonts.js', config.fonts);
 
 defineLazyTask(
