@@ -75,21 +75,24 @@ function normalizeConfig(config) {
 function wiredep(config) {
     config = normalizeConfig(config);
     
-    let assets = mainBowerFiles({
-            group: config.vendor.group
+    let target = gulp.src(config.entries/*, { since: gulp.lastRun(config.taskName) }*/),
+        assets = mainBowerFiles({
+            group: config.vendor.group,
+            includeDev: config.wiredep.includeDev
         });
     
     if (!assets.length) {
-        return gulp.src(config.entries)
-            .pipe(gulp.dest(config.dest))
-        ;
+        return target;
     }
     
     assets = gulp.src(assets, { read: false });
+    config.wiredep.name = config.vendor.inject.name;
     
-    return gulp.src(config.entries)
-        .pipe($.inject(assets, { name: config.vendor.inject.name }))
-        .pipe(gulp.dest(config.dest))
+    return target
+        .pipe($.inject(assets, config.wiredep))
+        .pipe(gulp.dest(function (file) {
+            return file.dirname;
+        }))
     ;
 }
 

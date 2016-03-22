@@ -83,6 +83,10 @@
         }
     ],
     
+    "wiredep": {
+        "ignorePath": "/bower_components"
+    },
+    
     "htmlmin": {
         "useShortDoctype": true,
         "removeComments": true,

@@ -13,7 +13,7 @@ defineLazyTask('browserSync', './gulp/tasks/browserSync.js', Config.get('browser
 
 defineLazyTask('clean', './gulp/tasks/clean.js', Config.get('clean'));
 
-defineLazyTask('wiredep', './gulp/tasks/wiredep.js', Config.get('html'));
+defineLazyTask('wiredep', './gulp/tasks/wiredep.js', Config.get(['html', 'wiredep']));
 
 defineLazyTask('compile:css', './gulp/tasks/compile/css.js', Config.get(['css', 'notify']));
 defineLazyTask('compile:browserify', './gulp/tasks/compile/browserify.js', Config.get(['browserify', 'notify']));
