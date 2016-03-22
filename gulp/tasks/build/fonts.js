@@ -2,6 +2,7 @@
 
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
+const browserSync = require('browser-sync');
 
 
 module.exports = function (config) {
@@ -13,7 +14,10 @@ module.exports = function (config) {
         
         return target
             .pipe($.newer(config.dest))
-            .pipe(gulp.dest(config.dest));
+            .pipe(gulp.dest(config.dest))
+            .pipe(browserSync.reload({
+                stream: true
+            }))
         ;
     }
 };

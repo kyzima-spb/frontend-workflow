@@ -23,22 +23,35 @@ defineLazyTask('build:images', './gulp/tasks/build/images.js', Config.get(['imag
 defineLazyTask('build:fonts', './gulp/tasks/build/fonts.js', Config.get('fonts'));
 defineLazyTask('build:html', './gulp/tasks/build/html.js', Config.get(['html', 'htmlmin']));
 
-gulp.task('compile', gulp.parallel([
-    'compile:css', 'compile:browserify'
-]));
-
-gulp.task('build', gulp.series([
-    'clean',
-    gulp.parallel(['compile', 'build:images', 'build:fonts', 'build:bower']),
-    'build:html'
-]));
 
 gulp.task('watch', gulp.parallel([
     lazyTask('./gulp/tasks/watch.js', Config.get('watch')),
-    lazyTask('./gulp/tasks/watchify.js', Config.get(['browserify', 'notify'])),
+    lazyTask('./gulp/tasks/watchify.js', Config.get(['browserify', 'notify']))
+]));
+
+
+gulp.task('default', gulp.series([
+    'clean',
+    'wiredep',
+    gulp.parallel([
+        'compile:css',
+        'build:images',
+        'build:fonts',
+        'build:html'
+    ]),
+    'watch',
     'browserSync'
 ]));
 
-gulp.task('serve', gulp.series(['build', 'browserSync']));
 
-gulp.task('default', gulp.series(['compile', 'watch']));
+gulp.task('build', gulp.series([
+    'clean',
+    gulp.parallel([
+        'compile:css',
+        'compile:browserify',
+        'build:images',
+        'build:fonts',
+        'build:bower'
+    ]),
+    'build:html'
+]));

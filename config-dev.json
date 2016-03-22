@@ -1,34 +1,21 @@
 {
+    "paths": {
+        "build": "./public/"
+    },
+    
     "browserSync": {
         "server": {
-            "baseDir": ["@tmp", "@src"],
             "routes": {
                 "/bower_components": "bower_components"
             }
         }
     },
     
-    "clean": {
-        "patterns": [
-            "@tmp"
-        ],
-        "options": {
-            "cwd": "."
-        }
-    },
-    
     "css": [
         {
-            "dest": "@tmp",
             "stylus": {
                 "include-css": false
             }
-        }
-    ],
-    
-    "browserify": [
-        {
-            "dest": "@tmp/js"
         }
     ]
 }

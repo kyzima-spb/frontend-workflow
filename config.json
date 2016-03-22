@@ -3,7 +3,6 @@
     
     "paths": {
         "src": "./app/",
-        "tmp": ".tmp/",
         "build": "./dist/"
     },
     
@@ -29,6 +28,18 @@
         {
             "src": ["@src/**/*.styl"],
             "tasks": ["compile:css"]
+        },
+        {
+            "src": ["@src/**/*.html"],
+            "tasks": ["build:html"]
+        },
+        {
+            "src": ["@src/img/**/*"],
+            "tasks": ["build:images"]
+        },
+        {
+            "src": ["@src/fonts/**/*"],
+            "tasks": ["build:fonts"]
         }
     ],
     

@@ -7,9 +7,10 @@ const es = require('event-stream');
 
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
+const browserSync = require('browser-sync');
 
 
-module.exports = function (options) {
+module.exports = function (options, devMode) {
     function buildHtml(config) {
         config = normalizeConfig(config);
             
@@ -36,8 +37,21 @@ module.exports = function (options) {
             .pipe(gulp.dest(config.dest))
         ;
     }
+    
+    
+    function copyHtml(config) {
+        return gulp.src(config.entries, { since: gulp.lastRun(options.taskName) })
+            .pipe($.newer(config.dest))
+            .pipe(gulp.dest(config.dest))
+            .pipe(browserSync.reload({
+                stream: true
+            }))
+        ;
+    }
+    
 
     return function (cb) {
-        es.merge(options.html.map(buildHtml)).on('end', cb);
+        let handler = devMode ? copyHtml : buildHtml;
+        es.merge(options.html.map(handler)).on('end', cb);
     }
 };

@@ -15,5 +15,6 @@ function watch(config) {
 module.exports = function (config) {
     return function (cb) {
         config.map(watch);
+        cb();
     };
 };
