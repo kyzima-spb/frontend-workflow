@@ -35,7 +35,7 @@ gulp.task('build', gulp.series([
 
 gulp.task('watch', gulp.parallel([
     lazyTask('./gulp/tasks/watch.js', Config.get('watch')),
-    'compile:browserify',
+    lazyTask('./gulp/tasks/watchify.js', Config.get(['browserify', 'notify'])),
     'browserSync'
 ]));
 
