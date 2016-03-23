@@ -13,6 +13,10 @@
         }
     },
     
+    "django": {
+        "manage": "./manage.py"
+    },
+    
     "browserSync": {
         "notify": false,
         "server": {
