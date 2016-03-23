@@ -104,10 +104,7 @@
     "css": [
         {
             "src": ["@src/**/[^_]*.styl"],
-            "dest": "@build",
-            "stylus": {
-                "include-css": true
-            }
+            "dest": "@build"
         }
     ],
     

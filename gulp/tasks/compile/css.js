@@ -20,7 +20,8 @@ module.exports = function (options, devMode) {
             processors.push(require('postcss-csso')());
         }
         
-        let stylusOptions = _.merge(config.stylus, {
+        let stylusOptions = _.merge(config.stylus || {}, {
+                "include-css": !devMode,
                 use: [
                     poststylus(processors)
                 ]
