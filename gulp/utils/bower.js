@@ -91,7 +91,7 @@ function wiredep(config) {
     return target
         .pipe($.inject(assets, config.wiredep))
         .pipe(gulp.dest(function (file) {
-            return file.dirname;
+            return file.base;
         }))
     ;
 }
