@@ -9,13 +9,5 @@
                 "/bower_components": "bower_components"
             }
         }
-    },
-    
-    "css": [
-        {
-            "stylus": {
-                "include-css": false
-            }
-        }
-    ]
+    }
 }
