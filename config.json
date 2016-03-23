@@ -67,7 +67,7 @@
             }
         },
         {
-            "entries": ["@src/admin/admin.html"],
+            "entries": ["@src/admin/**/*.html"],
             "dest": "@build/admin",
             "vendor": {
                 "group": "admin",
