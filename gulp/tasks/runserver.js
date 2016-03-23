@@ -5,7 +5,20 @@ const exec = require('child_process').exec;
 
 module.exports = function (config) {
     return function (done) {
-        let proc = exec(`PYTHONUNBUFFERED=1 python ${config.manage} runserver`);
+        let expr = /Starting development server at http:\/\//gi,
+            proc = exec(`PYTHONUNBUFFERED=1 python ${config.manage} runserver`),
+            runned = false;
+
+
+        proc.stdout.on('data', function (data) {
+            if (!runned) {
+                if (expr.test(data)) {
+                    console.log('OK');
+                    runned = true;
+                    done();
+                }
+            }
+        });
 
         if (config.stdout) {
             proc.stdout.on('data', function (data) {
@@ -18,8 +31,5 @@ module.exports = function (config) {
                 process.stdout.write(data);
             });
         }
-        
-        setTimeout(done, 1000);
-        // done();
     }
 };
