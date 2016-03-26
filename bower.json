@@ -1,7 +1,7 @@
 {
   "name": "frontend_workflow",
   "description": "",
-  "main": "gulpfile.js",
+  "main": "index.js",
   "authors": [
     "Kirill Vercetti"
   ],
@@ -28,20 +28,6 @@
       ]
     }
   },
-  "dependencies": {
-    "bootstrap": "^3.3.6",
-    "font-awesome": "^4.5.0",
-    "jquery-ui": "^1.11.4"
-  },
   "group": {
-    "test": [
-      "bootstrap"
-    ],
-    "admin": [
-      "font-awesome"
-    ]
-  },
-  "devDependencies": {
-    "mocha": "^2.4.5"
   }
 }
