@@ -1,0 +1,20 @@
+{
+    "paths": {
+        "build": "./public/"
+    },
+    
+    "browserSync": {
+        <$ if (hasDjango) { $>
+            "serveStatic": [
+                "./bower_components",
+                "@common_static_build"
+            ]
+        <$ } else { $>
+            "server": {
+                "routes": {
+                    "/bower_components": "bower_components"
+                }
+            }
+        <$ } $>
+    }
+}
