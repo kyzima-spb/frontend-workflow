@@ -9,6 +9,8 @@ const gulp = require('gulp');
 
 Config.load();
 
+<% if (hasDjango) { %>defineLazyTask('runserver', './gulp/tasks/runserver.js', Config.get('django'));<% } %>
+
 defineLazyTask('browserSync', './gulp/tasks/browserSync.js', Config.get('browserSync'));
 
 defineLazyTask('clean', './gulp/tasks/clean.js', Config.get('clean'));
@@ -40,6 +42,7 @@ gulp.task('default', gulp.series([
         'build:html'
     ]),
     'watch',
+    <% if (hasDjango) { %>'runserver',<% } %>
     'browserSync'
 ]));
 
