@@ -30,9 +30,17 @@ module.exports = function (options, devMode) {
             path.normalize(config.dest).split('/')
         );
         
+        <% if (hasDjango) { %>
+        let staticPath = {
+            regexp: /(href|src)=(["'])(?!(http|https|\/\/))([^"']+)\2/gi,
+            replace: '$1="{% static \'$4\' %}"'
+        };
+        <% } %>
+        
         return gulp.src(config.entries)
             .pipe(gulp.dest(config.dest))
             .pipe($.inject(assets, config.vendor.inject))
+            <% if (hasDjango) { %>.pipe($.replace(staticPath.regexp, staticPath.replace))<% } %>
             .pipe($.htmlmin(options.htmlmin))
             .pipe(gulp.dest(config.dest))
         ;

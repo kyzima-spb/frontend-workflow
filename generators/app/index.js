@@ -71,12 +71,13 @@ module.exports = yeoman.generators.Base.extend({
             this.directory('main', '.');
             
             if (this.answers.hasDjango) {
-                this.copy('runserver.js', 'gulp/tasks/runserver.js');
+                this.directory('django/tasks', 'gulp/tasks');
             } else {
                 this.directory('simple-app', 'app');
             }
             
             this.template('_index.js', 'gulp/index.js', this.answers);
+            this.template('_html.js', 'gulp/tasks/build/html.js', this.answers);
         },
         
         configFiles: function () {
