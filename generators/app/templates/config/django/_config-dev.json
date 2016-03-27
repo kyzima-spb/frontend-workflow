@@ -1,0 +1,10 @@
+{
+    "env": "development",
+    
+    "browserSync": {
+        "serveStatic": [
+            "./bower_components",
+            "@common_static_build"
+        ]
+    }
+}

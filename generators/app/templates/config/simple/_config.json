@@ -1,5 +1,5 @@
 {
-    "env": "development",
+    "env": "production",
     
     "paths": {
         "src": "./app/",
@@ -61,31 +61,10 @@
                     "relative": true
                 }
             }
-        },
-        {
-            "entries": ["@src/admin/**/*.html"],
-            "dest": "@build/admin",
-            "vendor": {
-                "group": "admin",
-                "outputCss": "@build/vendor/css/admin.css",
-                "outputJs": "@build/vendor/js/admin.js",
-                "inject": {
-                    "relative": true
-                }
-            }
-        },
-        {
-            "entries": ["@src/test.html"],
-            "dest": "@build",
-            "vendor": {
-                "group": "test"
-            }
         }
     ],
     
-    "wiredep": {
-        "ignorePath": "/bower_components"
-    },
+    "wiredep": {},
     
     "htmlmin": {
         "useShortDoctype": true,

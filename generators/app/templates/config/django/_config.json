@@ -1,0 +1,129 @@
+{
+    "env": "production",
+    
+    "paths": {
+        "common_static_src": "./static_src",
+        "common_static_build": "./static",
+        "common_templates_src": "./templates_src",
+        "common_templates_build": "./templates",
+        "apps_dir": "./apps",
+
+        "apps_static_src": "./apps/**/static_src",
+        "apps_static_build": "./apps/**/static",
+        "apps_templates_src": "./apps/**/templates_src",
+        "apps_templates_build": "./apps/**/templates"
+    },
+    
+    "notify": {
+        "error": {
+            "title": "<%= error.name %>: <%= error.plugin %>",
+            "message": "<%= error.message %>"
+        }
+    },
+    
+    "django": {
+        "manage": "./manage.py",
+        "host": "<$= django_host $>",
+        "port": "<$= django_port $>",
+        "stderr": true
+    },
+    
+    "browserSync": {
+        "proxy": "<$= django_host $>:<$= django_port $>"
+    },
+    
+    "watch": [
+        {
+            "src": "./bower.json",
+            "tasks": ["wiredep"]
+        },
+        {
+            "src": ["@common_static_src/**/*.styl", "@apps_static_src/**/*.styl"],
+            "tasks": ["compile:css"]
+        },
+        {
+            "src": ["@common_templates_src/**/*.html", "@apps_templates_src/**/*.html"],
+            "tasks": ["build:html"]
+        },
+        {
+            "src": ["@common_static_src/img/**/*"],
+            "tasks": ["build:images"]
+        },
+        {
+            "src": ["@common_static_src/fonts/**/*"],
+            "tasks": ["build:fonts"]
+        }
+    ],
+    
+    "clean": {
+        "patterns": [
+            "@common_static_build",
+            "@common_templates_build",
+            "!.git*",
+            "!.svn*"
+        ]
+    },
+    
+    "html": [
+        {
+            "entries": ["@common_templates_src/base.html"],
+            "dest": "@common_templates_build",
+            "vendor": {
+                "group": "vendor",
+                "outputCss": "@common_static_build/vendor/css/vendor.css",
+                "outputJs": "@common_static_build/vendor/js/vendor.js"
+            }
+        }
+    ],
+    
+    "wiredep": {
+        "ignorePath": "/bower_components"
+    },
+    
+    "htmlmin": {
+        "useShortDoctype": true,
+        "removeComments": true,
+        "removeCommentsFromCDATA": true,
+        "collapseWhitespace": true,
+        "removeEmptyAttributes": true,
+        "removeRedundantAttributes": true,
+        "collapseBooleanAttributes": true,
+        "removeScriptTypeAttributes": true,
+        "removeStyleLinkTypeAttributes": true,
+        "minifyJS": true,
+        "minifyCSS": true
+    },
+    
+    "css": [
+        {
+            "src": ["@common_static_src/**/[^_]*.styl"],
+            "dest": "@common_static_build",
+            "stylus": {}
+        }
+    ],
+    
+    "browserify": [
+        {
+            "entries": "@common_static_src/js/index.js",
+            "dest": "@common_static_build/js",
+            "outputName": "index.js",
+            "require": [],
+            "external": []
+        }
+    ],
+    
+    "images": {
+        "src": "@common_static_src/img/**/*",
+        "dest": "@common_static_build/img",
+        "imagemin": {
+            "progressive": true,
+            "interlaced": true
+        }
+    },
+    
+    "fonts": {
+        "src": "@common_static_src/fonts/**/*",
+        "dest": "@common_static_build/fonts",
+        "ext": "{eot,svg,ttf,woff,woff2}"
+    }
+}
