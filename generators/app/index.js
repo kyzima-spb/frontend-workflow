@@ -69,6 +69,10 @@ module.exports = yeoman.generators.Base.extend({
     writing: {
         mainFiles: function () {
             this.directory('main', '.');
+            
+            if (!this.answers.hasDjango) {
+                this.directory('simple-app', 'app');
+            }
         },
         
         configFiles: function () {
