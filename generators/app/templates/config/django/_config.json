@@ -1,5 +1,5 @@
 {
-    "env": "production",
+    "env": "development",
     
     "paths": {
         "common_static_src": "./static_src",

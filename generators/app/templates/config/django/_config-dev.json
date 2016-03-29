@@ -1,6 +1,4 @@
 {
-    "env": "development",
-    
     "browserSync": {
         "serveStatic": [
             "./bower_components",
