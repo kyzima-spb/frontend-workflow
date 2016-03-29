@@ -32,7 +32,7 @@ module.exports = function (options, devMode) {
         
         <% if (hasDjango) { %>
         let staticPath = {
-            regexp: /(href|src)=(["'])(?!(http|https|\/\/))\/?(?:static\/)?([^"']+)\2/gi,
+            regexp: /(href|src)=(["'])(?!(http|https|\/\/))\/?(?:static\/)?([^"'#]+)\2/gi,
             replace: '$1="{% static \'$4\' %}"'
         };
         <% } %>
