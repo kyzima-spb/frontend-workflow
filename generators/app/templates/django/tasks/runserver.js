@@ -5,11 +5,15 @@ const exec = require('child_process').exec;
 
 module.exports = function (config) {
     return function (done) {
-        let expr = /Starting development server at http:\/\//gi,
-            proc = exec(`PYTHONUNBUFFERED=1 python ${config.manage} runserver ${config.host}:${config.port}`),
+        let isWin = /^win/.test(process.platform),
+            expr = /Starting development server at http:\/\//gi,
+            cmd = isWin
+                ? `SET PYTHONUNBUFFERED=1 python ${config.manage} runserver ${config.host}:${config.port}`
+                : `PYTHONUNBUFFERED=1 python ${config.manage} runserver ${config.host}:${config.port}`,
+            proc = exec(cmd),
             runned = false;
 
-
+        // @fixme: error not handled
         proc.stdout.on('data', function (data) {
             if (!runned) {
                 if (expr.test(data)) {
